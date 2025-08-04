@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- XML declaration specifying UTF-8 character encoding -->
+
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+    <!-- DOCTYPE declaration referencing the Hibernate 3.0 DTD.
+    Required for older versions of Hibernate (pre-6.x).
+    Not used in Hibernate 6+ which uses XML Schema instead. -->
+
+<hibernate-configuration>
+    <!-- Root element for Hibernate configuration -->
+
+    <session-factory>
+        <!-- Defines a SessionFactory, the central point for Hibernate configuration and session creation -->
+
+        <property name="hibernate.connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property>
+        <!-- Specifies the JDBC driver class for Microsoft SQL Server -->
+
+        <property name="hibernate.connection.url">
+            jdbc:sqlserver://localhost:1433;databaseName=ATM_Project;encrypt=true;trustServerCertificate=true
+        </property>
+        <!-- JDBC connection URL to the local SQL Server instance on port 1433
+        - databaseName=Hibernate → DB name
+        - encrypt=true → enables SSL encryption
+        - trustServerCertificate=true → allows trusting the self-signed certificate -->
+
+        <property name="hibernate.connection.username">sa</property>
+        <!-- Database username (here: the default 'sa' user) -->
+
+        <property name="hibernate.connection.password">Saeednabawy@17</property>
+        <!-- Database password (make sure this is kept secure in real projects!) -->
+
+        <property name="hibernate.dialect">org.hibernate.dialect.SQLServerDialect</property>
+        <!-- Tells Hibernate how to translate HQL to SQL Server-specific SQL -->
+
+        <property name="hibernate.hbm2ddl.auto">update</property>
+        <!-- Schema management strategy:
+        - update: create/update DB schema based on entity classes
+        - create / create-drop / validate / none are other options -->
+
+        <property name="hibernate.show_sql">true</property>
+        <!-- Prints SQL statements to the console for debugging and visibility -->
+
+        <property name="hibernate.format_sql">true</property>
+        <!-- Formats the SQL output nicely with indentation and line breaks -->
+
+        <property name="hibernate.use_sql_comments">true</property>
+        <!-- Print SQL with parameter values instead of ? placeholders -->
+
+        <property name="hibernate.cache.region.factory_class">org.hibernate.cache.internal.NoCachingRegionFactory</property>
+
+        <mapping class="com.sfs.entity.BankAccount"/>
+        <mapping class="com.sfs.entity.WalletAccount"/>
+    </session-factory>
+    <!-- End of SessionFactory configuration -->
+</hibernate-configuration>
+<!-- End of Hibernate configuration -->
